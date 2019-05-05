@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import DescriptionCard from '../DescriptionCard/DescriptionCard.js'
+import DescriptionCard from '../DescriptionCard/DescriptionCard.js';
 
 export default class DisplayArea extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          people: [],
-          planets: [],
-          vehicles: []
+        favorites: []
       }
+  }
+
+  toggleFavorite = (id) => {
+
   }
   
   render() {
+    const { currentData, currentTitle } = this.props
+    const { favorites } =this.state
     return (
       <div>
-        <h1>Im here</h1>
-        <DescriptionCard />
+        <DescriptionCard currentData={currentData} 
+                         currentTitle={currentTitle}
+                         favorites={favorites}
+
+        />
       </div>
     )
   }

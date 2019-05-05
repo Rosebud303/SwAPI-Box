@@ -46,7 +46,6 @@ export default class App extends Component {
         <Controls dataArray={dataArray}
                   chooseCategory={chooseCategory}
         />
-        <DisplayArea chosenData={chosenData}/>
       </div>
     )
   };

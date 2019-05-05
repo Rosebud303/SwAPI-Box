@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { fetchData } from '../api';
+import DisplayArea from '../DisplayArea/DisplayArea.js';
 import { fetchPeople, cleanVehicles, cleanPeople, fetchPlanets, cleanPlanets } from '../api/cleanAPI'
 
 export default class Controls extends Component {
@@ -10,44 +11,59 @@ export default class Controls extends Component {
      people: [],
      vehicles: [],
      planets: [],
-     currentData: []
+     currentData: [],
+     currentTitle: ''
    }
   }
 
-  changeCurrentData = () => {
-    this.setState()
+  changeCurrentData = (current) => {
+    this.setState({currentData: current})
   }
 
-  getPlanets = () => {
+  changeCurrentTitle = (title) => {
+    this.setState({currentTitle: title})
+  }
+
+  getPlanets = (e) => {
     const url = 'https://swapi.co/api/planets/'
     fetchPlanets(url)
       .then(result => cleanPlanets(result))
-      .then( planets => this.setState({planets}))
+      .then( planets => this.setState({planets}, () => {
+        this.changeCurrentData(planets)
+      }))
+      this.changeCurrentTitle(e.target.innerText)
   }
 
-  getPeople = () => {
+  getPeople = (e) => {
     const url = 'https://swapi.co/api/people/';
     fetchPeople(url)
       .then(result => cleanPeople(result))
-      .then(people => this.setState({people}))
+      .then(people => this.setState({people}, () => {
+        this.changeCurrentData(people)
+      }))
+      this.changeCurrentTitle(e.target.innerText)
   }
 
-  getVehicles = () => {
+  getVehicles = (e) => {
     const url = 'https://swapi.co/api/vehicles/';
     fetchData(url)
       .then(result => cleanVehicles(result.results))
-      .then(vehicles => this.setState({vehicles}))
+      .then(vehicles => this.setState({vehicles}, () => {
+        this.changeCurrentData(vehicles)
+      }))
+      this.changeCurrentTitle(e.target.innerText)
   }
   
   render() {
-    const { dataArray } = this.props
-    const buttons = dataArray.map( data => <button key={data}
-                                                       onClick={this.getPlanets}>
-                                                       {data}
-                                           </button>)
+    const { currentData, currentTitle } = this.state
     return (
       <div>
-        {buttons}
+        <button onClick={this.getPeople}>people</button>
+        <button onClick={this.getPlanets}>planets</button>
+        <button onClick={this.getVehicles}>vehicles</button>
+        <DisplayArea currentData={currentData}
+                     currentTitle={currentTitle}
+        />
       </div>
     )
   }

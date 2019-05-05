@@ -23,6 +23,7 @@ const fetchSpecies = (newPeopleArray) => {
     const peopleWithSpecies = newPeopleArray.map( person => {
         return fetchData(person.species[0])
             .then(peoplesSpecies => ({...person, 
+                                         language: peoplesSpecies.language,
                                          species: peoplesSpecies.name}))
     })
     return Promise.all(peopleWithSpecies);
@@ -31,11 +32,12 @@ const fetchSpecies = (newPeopleArray) => {
 const cleanPeople = (peopleArray) => {
     return peopleArray.map( person => {
         return {
-            'name': person.name,
-            'homeworld': person.homeworld,
-            'species': person.species,
-            'population': person.population,
-            'favorite': false
+            'Name': person.name,
+            'Homeworld': person.homeworld,
+            'Species': person.species,
+            'Language': person.language,
+            'Population': person.population,
+            'Favorite': false
         }
     });
 }
@@ -66,12 +68,12 @@ const fetchResidentNames = (residents) => {
 const cleanPlanets = (planets) => {
     return planets.map( planet => {
         return {
-            'name': planet.name,
-            'terrain': planet.terrain,
-            'population': planet.population,
-            'climate': planet.climate,
-            'residents': planet.residents,
-            'favorite': false
+            'Name': planet.name,
+            'Terrain': planet.terrain,
+            'Population': planet.population,
+            'Climate': planet.climate,
+            'Residents': planet.residents,
+            'Favorite': false
         }
     });
 }
@@ -81,11 +83,11 @@ const cleanPlanets = (planets) => {
 const cleanVehicles = (vehicleArray) => {
     return vehicleArray.map( vehicle => {
         return {
-            'name': vehicle.name,
-            'model': vehicle.model,
-            'class': vehicle.vehicle_class,
-            'passangers': vehicle.passengers,
-            'favorite': false
+            'Name': vehicle.name,
+            'Model': vehicle.model,
+            'Class': vehicle.vehicle_class,
+            'Passengers': vehicle.passengers,
+            'Favorite': false
         }
     });
 }   
