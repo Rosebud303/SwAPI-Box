@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { fetchData } from '../api';
+import'./Scroll.scss'
 
 
 export default class Scroll extends Component {
@@ -35,14 +36,13 @@ export default class Scroll extends Component {
         const { randomFilm } = this.state;
         return (
         <div>
-            <div className='crawl'>
-                <p>{randomFilm.opening_crawl}</p>
-            </div>
             <div className='crawlInfo'>
                 <p className='crawlTitle'>{randomFilm.title}</p>
                 <p className='crawlDate'>{randomFilm.release_date}</p>
             </div>
-
+            <div className='crawlContainer'>
+                <p className='crawl'>{randomFilm.opening_crawl}</p>
+            </div>
         </div>
         )
     }

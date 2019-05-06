@@ -1,0 +1,20 @@
+.displayControls {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.categoryControls {
+    margin-right: 10px;
+    height: 45px;
+    width: 120px;
+    font-size: 20px;
+    background: #76d8d1;
+    color: white;
+    font-weight: 900;
+    border: 4px solid white;
+    border-radius: 15px;
+    &:hover {
+        background: #FF7A00;
+        cursor: pointer;
+    }
+}

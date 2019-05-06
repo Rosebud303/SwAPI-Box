@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import './VehicleCard.scss'
 
 export default function VehicleCard({vehicle}) {
   return (
-    <div>
-        <h3>{vehicle.Name}</h3>
+    <div className='vehicleCard'>
+        <h3 className='vehicleName'>{vehicle.Name}</h3>
         <p>Model: {vehicle.Model}</p>
         <p>Class: {vehicle.Class}</p>
         <p>Passengers: {vehicle.Passengers}</p>

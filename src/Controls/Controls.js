@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { fetchData } from '../api';
+import './Controls.scss'
 import DisplayArea from '../DisplayArea/DisplayArea.js';
 import { fetchPeople, cleanVehicles, cleanPeople, fetchPlanets, cleanPlanets } from '../api/cleanAPI'
 
@@ -8,11 +9,11 @@ export default class Controls extends Component {
    super(props)
 
    this.state = {
-     people: [],
-     vehicles: [],
-     planets: [],
-     currentData: [],
-     currentTitle: ''
+    people: [],
+    vehicles: [],
+    planets: [],
+    currentData: [],
+    currentTitle: ''
    }
   }
 
@@ -57,12 +58,12 @@ export default class Controls extends Component {
   render() {
     const { currentData, currentTitle } = this.state
     return (
-      <div>
-        <button onClick={this.getPeople}>people</button>
-        <button onClick={this.getPlanets}>planets</button>
-        <button onClick={this.getVehicles}>vehicles</button>
+      <div className='displayControls'>
+        <button className='categoryControls' onClick={this.getPeople}>people</button>
+        <button className='categoryControls' onClick={this.getPlanets}>planets</button>
+        <button className='categoryControls' onClick={this.getVehicles}>vehicles</button>
         <DisplayArea currentData={currentData}
-                     currentTitle={currentTitle}
+                    currentTitle={currentTitle}
         />
       </div>
     )
